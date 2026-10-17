@@ -32,7 +32,8 @@ normal internet access.
 | TypeScript strict compile | **PASS** | `npx tsc --noEmit` — 0 errors |
 | Unit/integration test suite | **PASS** | `npm test` — **51 tests in 6 files**, all green |
 | Production build | **PASS** | `npm run build` — 22 API routes, 13 dashboard pages, `/login`, `/signup`, `/v1/models`, `/v1/chat/completions`; first-load shared JS 103 kB |
-| Vercel build & deploy | **PASS** | Deployment `dpl_DRQwCmDkymMciGPU4AACNUeeNxgc` reached `READY` (state promoted to production) |
+| Vercel build & deploy | **PASS** | Deployment `dpl_GGF2VsXZs4Qe3NZCx1hCQRWVv7Aj` (commit `d10aa6c`) reached `READY` in 43.7 s and was promoted to production |
+| Vercel env vars present | **PASS** | Build/runtime env includes `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `APP_ENCRYPTION_KEY`, `PLATFORM_KEY_PEPPER`, gateway policy vars (names only) |
 | Schema migrations applied | **PASS** | 4 migrations recorded: `anvex_core_schema`, `anvex_rls_security`, `anvex_rate_limits`, `anvex_usage_tokens` |
 | Registry is database-driven | **PASS** | Live rows: **55 APIs, 12 categories, 1 provider, 3 AI models, 1 discovery run** |
 | Verification is honest | **PASS** | 7 `verified`, 2 `failed`, 46 `unverified` — statuses reflect real requests, not assumptions |
@@ -42,6 +43,19 @@ normal internet access.
 | Platform key table locked down | **PASS** | 0 table grants for `anon`/`authenticated` on `platform_api_keys` |
 | Rate-limit function not client-callable | **PASS** | `consume_rate_limit` execute privilege restricted to `service_role` |
 | `catalog_stats` usable by anon | **PASS** | `set role anon; select … from catalog_stats` returned 1 row (security_invoker view) |
+
+### Live production checks (real HTTP against the deployment)
+
+The production alias `https://anvex-sigma.vercel.app` is publicly reachable and
+was exercised after the final deploy:
+
+| Request | Observed | Verdict |
+| --- | --- | --- |
+| `GET /api/health` | `{"status":"ok",…,"checks":{"supabasePublic":true,"supabaseAdmin":true,"credentialEncryption":true}}` | **PASS** — live DB + service role + encryption key wired |
+| `GET /` (landing) | Renders real registry data: “55 public endpoints”, “7 verified live”, “1 providers”, verified cards for claude-haiku, gemini, cohere, tinyurl, facts, randomquotes with real test timestamps | **PASS** — no fabricated counters |
+| `GET /v1/models` unauthenticated | `401 {"error":{"type":"authentication_error","code":"unauthorized"}}` | **PASS** — gateway is auth-gated |
+| `GET /api/categories` unauthenticated | `401 {"error":{"code":"unauthorized"}}` | **PASS** — registry routes are auth-gated |
+| `GET /dashboard/explore` unauthenticated | `307 → /login` rendered | **PASS** — dashboard requires a session |
 
 ### What the 51 tests cover
 
@@ -87,7 +101,10 @@ Consequences that are visible in the product:
 
 The following checks are implemented end-to-end in `scripts/acceptance.mjs`
 (`npm run acceptance`). They were **not executed in this sandbox** because it
-cannot reach Supabase or the provider. The script provisions throwaway users
+cannot reach Supabase or the provider over TLS. The read-only production checks
+above ran through the agent's page-fetch tool, which cannot send POST requests
+or custom `Authorization` headers, so authenticated flows still need the script
+below. The script provisions throwaway users
 and keys, exercises the real HTTP surface, prints a pass/fail table and a JSON
 artifact, and cleans up the APIs it created.
 
