@@ -1,0 +1,2279 @@
+{
+  "success": true,
+  "data": {
+    "ai": [
+      {
+        "name": "Cohere",
+        "path": "/api/cohere",
+        "description": "Cohere Command A - Enterprise-grade AI for business applications",
+        "method": "GET",
+        "params": {
+          "q": "hii"
+        }
+      },
+      {
+        "name": "Deepseek-v3",
+        "path": "/api/deepseek-v3",
+        "description": "DeepSeek V3 Chat Mode - General conversation and chat capabilities (also supports POST with history & streaming)",
+        "method": "GET",
+        "params": {
+          "q": "hii"
+        }
+      },
+      {
+        "name": "Deepseek-r1",
+        "path": "/api/deepseek-r1",
+        "description": "DeepSeek R1 Reasoning Mode - Advanced reasoning and problem-solving",
+        "method": "GET",
+        "params": {
+          "q": "hii"
+        }
+      },
+      {
+        "name": "Gptlogic",
+        "path": "/api/gptlogic",
+        "description": "Multi-model AI with fallback across Llama, Qwen, and GPT-OSS",
+        "method": "GET",
+        "params": {
+          "q": "hii",
+          "prompt": "be friendly"
+        }
+      },
+      {
+        "name": "Gptlogic-V2",
+        "path": "/api/gptlogic-v2",
+        "description": "Xiaomi MiMo powered assistant with custom system prompt",
+        "method": "GET",
+        "params": {
+          "q": "hii",
+          "prompt": "Be an annoying ai"
+        }
+      },
+      {
+        "name": "Gemini",
+        "path": "/api/gemini",
+        "description": "Google Gemini - Google's multimodal AI (with Turbo fallback)",
+        "method": "GET",
+        "params": {
+          "q": "hello"
+        }
+      },
+      {
+        "name": "claude-haiku",
+        "path": "/api/claude-haiku",
+        "description": "Claude Haiku 4.5 - Fast and efficient AI for everyday tasks",
+        "method": "GET",
+        "params": {
+          "q": "hii"
+        }
+      },
+      {
+        "name": "claude-session",
+        "path": "/api/claude-session",
+        "description": "Claude Haiku with persistent session support for multi-turn conversations",
+        "method": "GET",
+        "params": {
+          "q": "hii",
+          "sessionId": "optional-session-id"
+        }
+      }
+    ],
+    "downloader": [
+      {
+        "name": "YoutubeDl",
+        "path": "/api/ytdl",
+        "description": "Download YouTube video or audio at a specific quality (mp3 / 360 / 720 / 1080 etc.)",
+        "method": "GET",
+        "params": {
+          "format": "mp3",
+          "url": "https://youtu.be/3ca64kJjhEU"
+        }
+      },
+      {
+        "name": "YoutubeMp3",
+        "path": "/api/yta",
+        "description": "Download YouTube audio in MP3 format (best quality available)",
+        "method": "GET",
+        "params": {
+          "url": "https://youtu.be/3ca64kJjhEU"
+        }
+      },
+      {
+        "name": "YtAudio",
+        "path": "/api/ytau",
+        "description": "Download YouTube audio with full metadata (title, channel, thumbnail, duration)",
+        "method": "GET",
+        "params": {
+          "url": "https://youtu.be/3ca64kJjhEU"
+        }
+      },
+      {
+        "name": "YoutubeMp4",
+        "path": "/api/ytv",
+        "description": "Download YouTube video in MP4 format (best quality available)",
+        "method": "GET",
+        "params": {
+          "url": "https://youtu.be/3ca64kJjhEU"
+        }
+      },
+      {
+        "name": "YtVideo",
+        "path": "/api/ytvi",
+        "description": "Get all available video qualities plus audio for a YouTube video in one request",
+        "method": "GET",
+        "params": {
+          "url": "https://youtu.be/3ca64kJjhEU"
+        }
+      },
+      {
+        "name": "YoutubeInfo",
+        "path": "/api/ytsearch",
+        "description": "Get title, channel, thumbnail, duration, views, and description for a YouTube video",
+        "method": "GET",
+        "params": {
+          "url": "https://youtu.be/3ca64kJjhEU"
+        }
+      },
+      {
+        "name": "YoutubePlay",
+        "path": "/api/ytplay",
+        "description": "Search YouTube and get all available video and audio qualities for the top hit",
+        "method": "GET",
+        "params": {
+          "q": "Limitless"
+        }
+      },
+      {
+        "name": "SpotifyDl",
+        "path": "/api/spotifydl",
+        "description": "Download Spotify track audio (Spotify metadata resolved via embed page, audio sourced from YouTube)",
+        "method": "GET",
+        "params": {
+          "url": "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT"
+        }
+      },
+      {
+        "name": "Twitter",
+        "path": "/api/xdl",
+        "description": "Download tweets, images, and videos from Twitter/X",
+        "method": "GET",
+        "params": {
+          "url": "https://x.com/i/status/2047556140410482874"
+        }
+      },
+      {
+        "name": "TikTokDl",
+        "path": "/api/ttdl",
+        "description": "Download TikTok videos (no-watermark, HD, watermark) and photo slideshows via TikWM. Accepts short (vt/vm), full, and bare-ID URL forms.",
+        "method": "GET",
+        "params": {
+          "url": "https://vm.tiktok.com/ZSq3dLMgC/"
+        }
+      },
+      {
+        "name": "Facebookdl",
+        "path": "/api/facebook",
+        "description": "Download Facebook videos, reels, and shared content",
+        "method": "GET",
+        "params": {
+          "url": "https://www.facebook.com/share/r/12Jhv1vQ85G/"
+        }
+      }
+    ],
+    "search": [
+      {
+        "name": "YoutubeSearch",
+        "path": "/api/yts",
+        "description": "Search YouTube for videos, channels, and playlists",
+        "method": "GET",
+        "params": {
+          "q": "Tamako edit"
+        }
+      },
+      {
+        "name": "Pinterest",
+        "path": "/api/pinterest",
+        "description": "Search Pinterest for images and pins",
+        "method": "GET",
+        "params": {
+          "q": "anime"
+        }
+      },
+      {
+        "name": "SoundCloudSearch",
+        "path": "/api/soundcloudsearch",
+        "description": "Search SoundCloud tracks via the mobile API",
+        "method": "GET",
+        "params": {
+          "q": "lofi",
+          "limit": "10"
+        }
+      },
+      {
+        "name": "SoundCloud",
+        "path": "/api/soundcloud",
+        "description": "Resolve a SoundCloud track URL (or search query) to full metadata and a direct CDN stream URL",
+        "method": "GET",
+        "params": {
+          "url": "https://soundcloud.com/she-and-him/i-thought-i-saw-your-face"
+        }
+      },
+      {
+        "name": "Applemusic",
+        "path": "/api/applemusic",
+        "description": "Search tracks from Apple Music",
+        "method": "GET",
+        "params": {
+          "q": "sacrifice"
+        }
+      },
+      {
+        "name": "Lyrics",
+        "path": "/api/lyrics",
+        "description": "Search song lyrics (lrclib with lyrics.ovh fallback)",
+        "method": "GET",
+        "params": {
+          "q": "ozeba"
+        }
+      },
+      {
+        "name": "Lyrics2",
+        "path": "/api/lyrics2",
+        "description": "Alternative lyrics search engine (lyrics.com)",
+        "method": "GET",
+        "params": {
+          "q": "ozeba"
+        }
+      },
+      {
+        "name": "AnimeSearch",
+        "path": "/api/animesearch",
+        "description": "Search anime on MyAnimeList",
+        "method": "GET",
+        "params": {
+          "q": "naruto"
+        }
+      },
+      {
+        "name": "NpmSearch",
+        "path": "/api/npmsearch",
+        "description": "Search NPM registry for JavaScript packages",
+        "method": "GET",
+        "params": {
+          "q": "baileys"
+        }
+      }
+    ],
+    "anime": [
+      {
+        "name": "BstationSearch",
+        "path": "/api/anisearch",
+        "description": "Search anime titles from Bstation (Bilibili)",
+        "method": "GET",
+        "params": {
+          "q": "naruto"
+        }
+      }
+    ],
+    "tools": [
+      {
+        "name": "GitClone",
+        "path": "/api/gitclone",
+        "description": "Get direct download links for GitHub repositories",
+        "method": "GET",
+        "params": {
+          "url": "https://github.com/Lord-Samuel/rebix-db"
+        }
+      },
+      {
+        "name": "ApkSearch",
+        "path": "/api/apksearch",
+        "description": "Search APKCombo for Android apps and games",
+        "method": "GET",
+        "params": {
+          "q": "whatsapp"
+        }
+      },
+      {
+        "name": "Tinyurl",
+        "path": "/api/tinyurl",
+        "description": "Shorten long URLs using TinyURL service",
+        "method": "GET",
+        "params": {
+          "url": "https://google.com"
+        }
+      },
+      {
+        "name": "Translate",
+        "path": "/api/translate",
+        "description": "Translate text between languages",
+        "method": "GET",
+        "params": {
+          "text": "I love you",
+          "to": "id"
+        }
+      },
+      {
+        "name": "NumberLookup",
+        "path": "/api/numberlookup",
+        "description": "Look up carrier, line type, geographic region, timezone, and formatted variants for any phone number worldwide",
+        "method": "GET",
+        "params": {
+          "q": "+12128148373"
+        }
+      }
+    ],
+    "tools-extra": [
+      {
+        "name": "Ssweb",
+        "path": "/api/ssweb",
+        "description": "Take website screenshots (supports desktop, phone, tablet, and full page)",
+        "method": "GET",
+        "params": {
+          "url": "https://google.com",
+          "device": "full"
+        }
+      },
+      {
+        "name": "RemoveBg",
+        "path": "/api/removebg",
+        "description": "Remove image backgrounds automatically",
+        "method": "GET",
+        "params": {
+          "url": "https://files.catbox.moe/dv8r14.jpg"
+        }
+      },
+      {
+        "name": "OCR",
+        "path": "/api/ocr",
+        "description": "Extract text from images using OCR (Optical Character Recognition)",
+        "method": "GET",
+        "params": {
+          "url": "https://sam-cdn.zone.id/files/55ykd6.jpg"
+        }
+      },
+      {
+        "name": "Enhance",
+        "path": "/api/enhance",
+        "description": "Upscale and enhance image quality using AI (Pixelcut)",
+        "method": "GET",
+        "params": {
+          "url": "https://i.pinimg.com/736x/f9/0f/85/f90f8504271cedf0681a297a7d69c593.jpg"
+        }
+      },
+      {
+        "name": "Txt2Img",
+        "path": "/api/txt2img",
+        "description": "Generate images from text prompts using AI (Flux Dev Ultra Fast)",
+        "method": "GET",
+        "params": {
+          "q": "naruto from naruto"
+        }
+      }
+    ],
+    "random": [
+      {
+        "name": "Random-Quotes",
+        "path": "/api/randomquotes",
+        "description": "Get random inspirational quotes",
+        "method": "GET",
+        "params": {}
+      },
+      {
+        "name": "Random-Facts",
+        "path": "/api/facts",
+        "description": "Get random interesting facts",
+        "method": "GET",
+        "params": {}
+      },
+      {
+        "name": "Random-img",
+        "path": "/api/randomimage",
+        "description": "Get random aesthetic images",
+        "method": "GET",
+        "params": {}
+      }
+    ],
+    "images": [
+      {
+        "name": "Waifu",
+        "path": "/api/waifu",
+        "description": "Get random anime waifu pictures",
+        "method": "GET",
+        "params": {}
+      },
+      {
+        "name": "Cosplay",
+        "path": "/api/cosplay",
+        "description": "Get random anime cosplay pictures",
+        "method": "GET",
+        "params": {}
+      },
+      {
+        "name": "Couplepp",
+        "path": "/api/couplepp",
+        "description": "Get matching couple profile pictures (male & female)",
+        "method": "GET",
+        "params": {}
+      },
+      {
+        "name": "BlueArchive",
+        "path": "/api/bluearchive",
+        "description": "Get random Blue Archive game images",
+        "method": "GET",
+        "params": {}
+      },
+      {
+        "name": "Wallpaper-Main",
+        "path": "/api/wallpaper",
+        "description": "Get list of available wallpaper endpoints",
+        "method": "GET",
+        "params": {}
+      },
+      {
+        "name": "Technology",
+        "path": "/api/wallpaper/technology",
+        "description": "Get technology-themed wallpapers",
+        "method": "GET",
+        "params": {}
+      },
+      {
+        "name": "Programming",
+        "path": "/api/wallpaper/programming",
+        "description": "Get programming-themed wallpapers",
+        "method": "GET",
+        "params": {}
+      }
+    ],
+    "nsfw": [
+      {
+        "name": "Pussy",
+        "path": "/api/nsfw/pussy",
+        "description": "NSFW content - Pussy category (18+ only)",
+        "method": "GET",
+        "params": {},
+        "nsfw": true
+      },
+      {
+        "name": "Cuckold",
+        "path": "/api/nsfw/cuckold",
+        "description": "NSFW content - Cuckold category (18+ only)",
+        "method": "GET",
+        "params": {},
+        "nsfw": true
+      },
+      {
+        "name": "Yuri",
+        "path": "/api/nsfw/yuri",
+        "description": "NSFW content - Yuri category (18+ only)",
+        "method": "GET",
+        "params": {},
+        "nsfw": true
+      },
+      {
+        "name": "Milf",
+        "path": "/api/nsfw/milf",
+        "description": "NSFW content - Milf category (18+ only)",
+        "method": "GET",
+        "params": {},
+        "nsfw": true
+      },
+      {
+        "name": "Blowjob",
+        "path": "/api/nsfw/blowjob",
+        "description": "NSFW content - Blowjob category (18+ only)",
+        "method": "GET",
+        "params": {},
+        "nsfw": true
+      }
+    ],
+    "system": [
+      {
+        "name": "Stats",
+        "path": "/api/stats",
+        "description": "Get API server statistics (uptime, memory, CPU, IP, etc.)",
+        "method": "GET",
+        "params": {}
+      }
+    ]
+  },
+  "timestamp": "2026-10-17T16:39:11.102Z",
+  "source_url": "https://api-rebix.zone.id/allEnds",
+  "discovered_at": "2026-10-17T16:39:11.102Z",
+  "discovery_notes": "Live inspection of https://api-rebix.zone.id/ homepage, /script.js bundle (which calls fetch('/allEnds')) and the public /allEnds manifest. OpenAPI probes (/openapi.json, /swagger.json, /docs/openapi.json, /.well-known/openapi.json) returned 404 or were absent.",
+  "categories": [
+    {
+      "slug": "ai",
+      "name": "AI",
+      "sort_order": 0
+    },
+    {
+      "slug": "downloader",
+      "name": "Downloaders",
+      "sort_order": 1
+    },
+    {
+      "slug": "search",
+      "name": "Search",
+      "sort_order": 2
+    },
+    {
+      "slug": "anime",
+      "name": "Anime",
+      "sort_order": 3
+    },
+    {
+      "slug": "stalk",
+      "name": "Stalk",
+      "sort_order": 4
+    },
+    {
+      "slug": "tools",
+      "name": "Tools",
+      "sort_order": 5
+    },
+    {
+      "slug": "tools-extra",
+      "name": "Extra Tools",
+      "sort_order": 6
+    },
+    {
+      "slug": "random",
+      "name": "Random",
+      "sort_order": 7
+    },
+    {
+      "slug": "images",
+      "name": "Images",
+      "sort_order": 8
+    },
+    {
+      "slug": "nsfw",
+      "name": "NSFW (18+)",
+      "sort_order": 9
+    },
+    {
+      "slug": "system",
+      "name": "System",
+      "sort_order": 10
+    },
+    {
+      "slug": "general",
+      "name": "General",
+      "sort_order": 11
+    }
+  ],
+  "normalized": [
+    {
+      "name": "Cohere",
+      "slug": "cohere",
+      "path": "/api/cohere",
+      "method": "GET",
+      "description": "Cohere Command A - Enterprise-grade AI for business applications",
+      "category_slug": "ai",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "hii",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/cohere",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/cohere",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/cohere",
+        "query": {
+          "q": "hii"
+        }
+      },
+      "example_params": {
+        "q": "hii"
+      },
+      "verification_status": "verified",
+      "last_error": null,
+      "response_example": {
+        "status": true,
+        "creator": "Samuel-Rebix",
+        "message": "Hello! How can I assist you today?"
+      }
+    },
+    {
+      "name": "Deepseek-v3",
+      "slug": "deepseek-v3",
+      "path": "/api/deepseek-v3",
+      "method": "GET",
+      "description": "DeepSeek V3 Chat Mode - General conversation and chat capabilities (also supports POST with history & streaming)",
+      "category_slug": "ai",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "hii",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/deepseek-v3",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/deepseek-v3",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/deepseek-v3",
+        "query": {
+          "q": "hii"
+        }
+      },
+      "example_params": {
+        "q": "hii"
+      },
+      "verification_status": "failed",
+      "last_error": "Failed To Get Response From DeepSeek-V3 HTTP 422: The selected messages.0.role is invalid.",
+      "response_example": {
+        "status": false,
+        "creator": "Samuel-Rebix",
+        "message": "Failed To Get Response From DeepSeek-V3 HTTP 422: The selected messages.0.role is invalid."
+      }
+    },
+    {
+      "name": "Deepseek-r1",
+      "slug": "deepseek-r1",
+      "path": "/api/deepseek-r1",
+      "method": "GET",
+      "description": "DeepSeek R1 Reasoning Mode - Advanced reasoning and problem-solving",
+      "category_slug": "ai",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "hii",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/deepseek-r1",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/deepseek-r1",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/deepseek-r1",
+        "query": {
+          "q": "hii"
+        }
+      },
+      "example_params": {
+        "q": "hii"
+      },
+      "verification_status": "failed",
+      "last_error": "Failed To Get Response From DeepSeek HTTP 422: The selected messages.0.role is invalid.",
+      "response_example": {
+        "status": false,
+        "creator": "Samuel-Rebix",
+        "message": "Failed To Get Response From DeepSeek HTTP 422: The selected messages.0.role is invalid."
+      }
+    },
+    {
+      "name": "Gptlogic",
+      "slug": "gptlogic",
+      "path": "/api/gptlogic",
+      "method": "GET",
+      "description": "Multi-model AI with fallback across Llama, Qwen, and GPT-OSS",
+      "category_slug": "ai",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "hii",
+          "description": "Discovered from the provider public route manifest (example value)."
+        },
+        {
+          "name": "prompt",
+          "type": "string",
+          "required": false,
+          "example": "be friendly",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/gptlogic",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/gptlogic",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/gptlogic",
+        "query": {
+          "q": "hii",
+          "prompt": "be friendly"
+        }
+      },
+      "example_params": {
+        "q": "hii",
+        "prompt": "be friendly"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Gptlogic-V2",
+      "slug": "gptlogic-v2",
+      "path": "/api/gptlogic-v2",
+      "method": "GET",
+      "description": "Xiaomi MiMo powered assistant with custom system prompt",
+      "category_slug": "ai",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "hii",
+          "description": "Discovered from the provider public route manifest (example value)."
+        },
+        {
+          "name": "prompt",
+          "type": "string",
+          "required": false,
+          "example": "Be an annoying ai",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/gptlogic-v2",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/gptlogic-v2",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/gptlogic-v2",
+        "query": {
+          "q": "hii",
+          "prompt": "Be an annoying ai"
+        }
+      },
+      "example_params": {
+        "q": "hii",
+        "prompt": "Be an annoying ai"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Gemini",
+      "slug": "gemini",
+      "path": "/api/gemini",
+      "method": "GET",
+      "description": "Google Gemini - Google's multimodal AI (with Turbo fallback)",
+      "category_slug": "ai",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "hello",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/gemini",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/gemini",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/gemini",
+        "query": {
+          "q": "hello"
+        }
+      },
+      "example_params": {
+        "q": "hello"
+      },
+      "verification_status": "verified",
+      "last_error": null,
+      "response_example": {
+        "status": true,
+        "creator": "Samuel-Rebix",
+        "message": "Hello! How can I help you today?"
+      }
+    },
+    {
+      "name": "claude-haiku",
+      "slug": "claude-haiku",
+      "path": "/api/claude-haiku",
+      "method": "GET",
+      "description": "Claude Haiku 4.5 - Fast and efficient AI for everyday tasks",
+      "category_slug": "ai",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "hii",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/claude-haiku",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/claude-haiku",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/claude-haiku",
+        "query": {
+          "q": "hii"
+        }
+      },
+      "example_params": {
+        "q": "hii"
+      },
+      "verification_status": "verified",
+      "last_error": null,
+      "response_example": {
+        "status": true,
+        "creator": "Samuel-Rebix",
+        "model": "Claude Haiku 4.5",
+        "response": "Hey! How's it going? What can I help you with?"
+      }
+    },
+    {
+      "name": "claude-session",
+      "slug": "claude-session",
+      "path": "/api/claude-session",
+      "method": "GET",
+      "description": "Claude Haiku with persistent session support for multi-turn conversations",
+      "category_slug": "ai",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "hii",
+          "description": "Discovered from the provider public route manifest (example value)."
+        },
+        {
+          "name": "sessionId",
+          "type": "string",
+          "required": false,
+          "example": "optional-session-id",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/claude-session",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/claude-session",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/claude-session",
+        "query": {
+          "q": "hii",
+          "sessionId": "optional-session-id"
+        }
+      },
+      "example_params": {
+        "q": "hii",
+        "sessionId": "optional-session-id"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "YoutubeDl",
+      "slug": "youtubedl",
+      "path": "/api/ytdl",
+      "method": "GET",
+      "description": "Download YouTube video or audio at a specific quality (mp3 / 360 / 720 / 1080 etc.)",
+      "category_slug": "downloader",
+      "query_params": [
+        {
+          "name": "format",
+          "type": "string",
+          "required": false,
+          "example": "mp3",
+          "description": "Discovered from the provider public route manifest (example value)."
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://youtu.be/3ca64kJjhEU",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/ytdl",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/ytdl",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/ytdl",
+        "query": {
+          "format": "mp3",
+          "url": "https://youtu.be/3ca64kJjhEU"
+        }
+      },
+      "example_params": {
+        "format": "mp3",
+        "url": "https://youtu.be/3ca64kJjhEU"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "YoutubeMp3",
+      "slug": "youtubemp3",
+      "path": "/api/yta",
+      "method": "GET",
+      "description": "Download YouTube audio in MP3 format (best quality available)",
+      "category_slug": "downloader",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://youtu.be/3ca64kJjhEU",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/yta",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/yta",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/yta",
+        "query": {
+          "url": "https://youtu.be/3ca64kJjhEU"
+        }
+      },
+      "example_params": {
+        "url": "https://youtu.be/3ca64kJjhEU"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "YtAudio",
+      "slug": "ytaudio",
+      "path": "/api/ytau",
+      "method": "GET",
+      "description": "Download YouTube audio with full metadata (title, channel, thumbnail, duration)",
+      "category_slug": "downloader",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://youtu.be/3ca64kJjhEU",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/ytau",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/ytau",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/ytau",
+        "query": {
+          "url": "https://youtu.be/3ca64kJjhEU"
+        }
+      },
+      "example_params": {
+        "url": "https://youtu.be/3ca64kJjhEU"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "YoutubeMp4",
+      "slug": "youtubemp4",
+      "path": "/api/ytv",
+      "method": "GET",
+      "description": "Download YouTube video in MP4 format (best quality available)",
+      "category_slug": "downloader",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://youtu.be/3ca64kJjhEU",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/ytv",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/ytv",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/ytv",
+        "query": {
+          "url": "https://youtu.be/3ca64kJjhEU"
+        }
+      },
+      "example_params": {
+        "url": "https://youtu.be/3ca64kJjhEU"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "YtVideo",
+      "slug": "ytvideo",
+      "path": "/api/ytvi",
+      "method": "GET",
+      "description": "Get all available video qualities plus audio for a YouTube video in one request",
+      "category_slug": "downloader",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://youtu.be/3ca64kJjhEU",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/ytvi",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/ytvi",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/ytvi",
+        "query": {
+          "url": "https://youtu.be/3ca64kJjhEU"
+        }
+      },
+      "example_params": {
+        "url": "https://youtu.be/3ca64kJjhEU"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "YoutubeInfo",
+      "slug": "youtubeinfo",
+      "path": "/api/ytsearch",
+      "method": "GET",
+      "description": "Get title, channel, thumbnail, duration, views, and description for a YouTube video",
+      "category_slug": "downloader",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://youtu.be/3ca64kJjhEU",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/ytsearch",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/ytsearch",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/ytsearch",
+        "query": {
+          "url": "https://youtu.be/3ca64kJjhEU"
+        }
+      },
+      "example_params": {
+        "url": "https://youtu.be/3ca64kJjhEU"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "YoutubePlay",
+      "slug": "youtubeplay",
+      "path": "/api/ytplay",
+      "method": "GET",
+      "description": "Search YouTube and get all available video and audio qualities for the top hit",
+      "category_slug": "downloader",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "Limitless",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/ytplay",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/ytplay",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/ytplay",
+        "query": {
+          "q": "Limitless"
+        }
+      },
+      "example_params": {
+        "q": "Limitless"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "SpotifyDl",
+      "slug": "spotifydl",
+      "path": "/api/spotifydl",
+      "method": "GET",
+      "description": "Download Spotify track audio (Spotify metadata resolved via embed page, audio sourced from YouTube)",
+      "category_slug": "downloader",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/spotifydl",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/spotifydl",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/spotifydl",
+        "query": {
+          "url": "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT"
+        }
+      },
+      "example_params": {
+        "url": "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Twitter",
+      "slug": "twitter",
+      "path": "/api/xdl",
+      "method": "GET",
+      "description": "Download tweets, images, and videos from Twitter/X",
+      "category_slug": "downloader",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://x.com/i/status/2047556140410482874",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/xdl",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/xdl",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/xdl",
+        "query": {
+          "url": "https://x.com/i/status/2047556140410482874"
+        }
+      },
+      "example_params": {
+        "url": "https://x.com/i/status/2047556140410482874"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "TikTokDl",
+      "slug": "tiktokdl",
+      "path": "/api/ttdl",
+      "method": "GET",
+      "description": "Download TikTok videos (no-watermark, HD, watermark) and photo slideshows via TikWM. Accepts short (vt/vm), full, and bare-ID URL forms.",
+      "category_slug": "downloader",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://vm.tiktok.com/ZSq3dLMgC/",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/ttdl",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/ttdl",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/ttdl",
+        "query": {
+          "url": "https://vm.tiktok.com/ZSq3dLMgC/"
+        }
+      },
+      "example_params": {
+        "url": "https://vm.tiktok.com/ZSq3dLMgC/"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Facebookdl",
+      "slug": "facebookdl",
+      "path": "/api/facebook",
+      "method": "GET",
+      "description": "Download Facebook videos, reels, and shared content",
+      "category_slug": "downloader",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://www.facebook.com/share/r/12Jhv1vQ85G/",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/facebook",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/facebook",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/facebook",
+        "query": {
+          "url": "https://www.facebook.com/share/r/12Jhv1vQ85G/"
+        }
+      },
+      "example_params": {
+        "url": "https://www.facebook.com/share/r/12Jhv1vQ85G/"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "YoutubeSearch",
+      "slug": "youtubesearch",
+      "path": "/api/yts",
+      "method": "GET",
+      "description": "Search YouTube for videos, channels, and playlists",
+      "category_slug": "search",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "Tamako edit",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/yts",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/yts",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/yts",
+        "query": {
+          "q": "Tamako edit"
+        }
+      },
+      "example_params": {
+        "q": "Tamako edit"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Pinterest",
+      "slug": "pinterest",
+      "path": "/api/pinterest",
+      "method": "GET",
+      "description": "Search Pinterest for images and pins",
+      "category_slug": "search",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "anime",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/pinterest",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/pinterest",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/pinterest",
+        "query": {
+          "q": "anime"
+        }
+      },
+      "example_params": {
+        "q": "anime"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "SoundCloudSearch",
+      "slug": "soundcloudsearch",
+      "path": "/api/soundcloudsearch",
+      "method": "GET",
+      "description": "Search SoundCloud tracks via the mobile API",
+      "category_slug": "search",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "lofi",
+          "description": "Discovered from the provider public route manifest (example value)."
+        },
+        {
+          "name": "limit",
+          "type": "string",
+          "required": false,
+          "example": "10",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/soundcloudsearch",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/soundcloudsearch",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/soundcloudsearch",
+        "query": {
+          "q": "lofi",
+          "limit": "10"
+        }
+      },
+      "example_params": {
+        "q": "lofi",
+        "limit": "10"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "SoundCloud",
+      "slug": "soundcloud",
+      "path": "/api/soundcloud",
+      "method": "GET",
+      "description": "Resolve a SoundCloud track URL (or search query) to full metadata and a direct CDN stream URL",
+      "category_slug": "search",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://soundcloud.com/she-and-him/i-thought-i-saw-your-face",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/soundcloud",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/soundcloud",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/soundcloud",
+        "query": {
+          "url": "https://soundcloud.com/she-and-him/i-thought-i-saw-your-face"
+        }
+      },
+      "example_params": {
+        "url": "https://soundcloud.com/she-and-him/i-thought-i-saw-your-face"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Applemusic",
+      "slug": "applemusic",
+      "path": "/api/applemusic",
+      "method": "GET",
+      "description": "Search tracks from Apple Music",
+      "category_slug": "search",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "sacrifice",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/applemusic",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/applemusic",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/applemusic",
+        "query": {
+          "q": "sacrifice"
+        }
+      },
+      "example_params": {
+        "q": "sacrifice"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Lyrics",
+      "slug": "lyrics",
+      "path": "/api/lyrics",
+      "method": "GET",
+      "description": "Search song lyrics (lrclib with lyrics.ovh fallback)",
+      "category_slug": "search",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "ozeba",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/lyrics",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/lyrics",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/lyrics",
+        "query": {
+          "q": "ozeba"
+        }
+      },
+      "example_params": {
+        "q": "ozeba"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Lyrics2",
+      "slug": "lyrics2",
+      "path": "/api/lyrics2",
+      "method": "GET",
+      "description": "Alternative lyrics search engine (lyrics.com)",
+      "category_slug": "search",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "ozeba",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/lyrics2",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/lyrics2",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/lyrics2",
+        "query": {
+          "q": "ozeba"
+        }
+      },
+      "example_params": {
+        "q": "ozeba"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "AnimeSearch",
+      "slug": "animesearch",
+      "path": "/api/animesearch",
+      "method": "GET",
+      "description": "Search anime on MyAnimeList",
+      "category_slug": "search",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "naruto",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/animesearch",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/animesearch",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/animesearch",
+        "query": {
+          "q": "naruto"
+        }
+      },
+      "example_params": {
+        "q": "naruto"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "NpmSearch",
+      "slug": "npmsearch",
+      "path": "/api/npmsearch",
+      "method": "GET",
+      "description": "Search NPM registry for JavaScript packages",
+      "category_slug": "search",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "baileys",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/npmsearch",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/npmsearch",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/npmsearch",
+        "query": {
+          "q": "baileys"
+        }
+      },
+      "example_params": {
+        "q": "baileys"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "BstationSearch",
+      "slug": "bstationsearch",
+      "path": "/api/anisearch",
+      "method": "GET",
+      "description": "Search anime titles from Bstation (Bilibili)",
+      "category_slug": "anime",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "naruto",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/anisearch",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/anisearch",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/anisearch",
+        "query": {
+          "q": "naruto"
+        }
+      },
+      "example_params": {
+        "q": "naruto"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "GitClone",
+      "slug": "gitclone",
+      "path": "/api/gitclone",
+      "method": "GET",
+      "description": "Get direct download links for GitHub repositories",
+      "category_slug": "tools",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://github.com/Lord-Samuel/rebix-db",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/gitclone",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/gitclone",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/gitclone",
+        "query": {
+          "url": "https://github.com/Lord-Samuel/rebix-db"
+        }
+      },
+      "example_params": {
+        "url": "https://github.com/Lord-Samuel/rebix-db"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "ApkSearch",
+      "slug": "apksearch",
+      "path": "/api/apksearch",
+      "method": "GET",
+      "description": "Search APKCombo for Android apps and games",
+      "category_slug": "tools",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "whatsapp",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/apksearch",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/apksearch",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/apksearch",
+        "query": {
+          "q": "whatsapp"
+        }
+      },
+      "example_params": {
+        "q": "whatsapp"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Tinyurl",
+      "slug": "tinyurl",
+      "path": "/api/tinyurl",
+      "method": "GET",
+      "description": "Shorten long URLs using TinyURL service",
+      "category_slug": "tools",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://google.com",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/tinyurl",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/tinyurl",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/tinyurl",
+        "query": {
+          "url": "https://google.com"
+        }
+      },
+      "example_params": {
+        "url": "https://google.com"
+      },
+      "verification_status": "verified",
+      "last_error": null,
+      "response_example": {
+        "status": true,
+        "creator": "Samuel-Rebix",
+        "result": "https://tinyurl.com/peakb"
+      }
+    },
+    {
+      "name": "Translate",
+      "slug": "translate",
+      "path": "/api/translate",
+      "method": "GET",
+      "description": "Translate text between languages",
+      "category_slug": "tools",
+      "query_params": [
+        {
+          "name": "text",
+          "type": "string",
+          "required": false,
+          "example": "I love you",
+          "description": "Discovered from the provider public route manifest (example value)."
+        },
+        {
+          "name": "to",
+          "type": "string",
+          "required": false,
+          "example": "id",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/translate",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/translate",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/translate",
+        "query": {
+          "text": "I love you",
+          "to": "id"
+        }
+      },
+      "example_params": {
+        "text": "I love you",
+        "to": "id"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "NumberLookup",
+      "slug": "numberlookup",
+      "path": "/api/numberlookup",
+      "method": "GET",
+      "description": "Look up carrier, line type, geographic region, timezone, and formatted variants for any phone number worldwide",
+      "category_slug": "tools",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "+12128148373",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/numberlookup",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/numberlookup",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/numberlookup",
+        "query": {
+          "q": "+12128148373"
+        }
+      },
+      "example_params": {
+        "q": "+12128148373"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Ssweb",
+      "slug": "ssweb",
+      "path": "/api/ssweb",
+      "method": "GET",
+      "description": "Take website screenshots (supports desktop, phone, tablet, and full page)",
+      "category_slug": "tools-extra",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://google.com",
+          "description": "Discovered from the provider public route manifest (example value)."
+        },
+        {
+          "name": "device",
+          "type": "string",
+          "required": false,
+          "example": "full",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/ssweb",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/ssweb",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/ssweb",
+        "query": {
+          "url": "https://google.com",
+          "device": "full"
+        }
+      },
+      "example_params": {
+        "url": "https://google.com",
+        "device": "full"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "RemoveBg",
+      "slug": "removebg",
+      "path": "/api/removebg",
+      "method": "GET",
+      "description": "Remove image backgrounds automatically",
+      "category_slug": "tools-extra",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://files.catbox.moe/dv8r14.jpg",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/removebg",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/removebg",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/removebg",
+        "query": {
+          "url": "https://files.catbox.moe/dv8r14.jpg"
+        }
+      },
+      "example_params": {
+        "url": "https://files.catbox.moe/dv8r14.jpg"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "OCR",
+      "slug": "ocr",
+      "path": "/api/ocr",
+      "method": "GET",
+      "description": "Extract text from images using OCR (Optical Character Recognition)",
+      "category_slug": "tools-extra",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://sam-cdn.zone.id/files/55ykd6.jpg",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/ocr",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/ocr",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/ocr",
+        "query": {
+          "url": "https://sam-cdn.zone.id/files/55ykd6.jpg"
+        }
+      },
+      "example_params": {
+        "url": "https://sam-cdn.zone.id/files/55ykd6.jpg"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Enhance",
+      "slug": "enhance",
+      "path": "/api/enhance",
+      "method": "GET",
+      "description": "Upscale and enhance image quality using AI (Pixelcut)",
+      "category_slug": "tools-extra",
+      "query_params": [
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "example": "https://i.pinimg.com/736x/f9/0f/85/f90f8504271cedf0681a297a7d69c593.jpg",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/enhance",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/enhance",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/enhance",
+        "query": {
+          "url": "https://i.pinimg.com/736x/f9/0f/85/f90f8504271cedf0681a297a7d69c593.jpg"
+        }
+      },
+      "example_params": {
+        "url": "https://i.pinimg.com/736x/f9/0f/85/f90f8504271cedf0681a297a7d69c593.jpg"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Txt2Img",
+      "slug": "txt2img",
+      "path": "/api/txt2img",
+      "method": "GET",
+      "description": "Generate images from text prompts using AI (Flux Dev Ultra Fast)",
+      "category_slug": "tools-extra",
+      "query_params": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "example": "naruto from naruto",
+          "description": "Discovered from the provider public route manifest (example value)."
+        }
+      ],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/txt2img",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/txt2img",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/txt2img",
+        "query": {
+          "q": "naruto from naruto"
+        }
+      },
+      "example_params": {
+        "q": "naruto from naruto"
+      },
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Random-Quotes",
+      "slug": "random-quotes",
+      "path": "/api/randomquotes",
+      "method": "GET",
+      "description": "Get random inspirational quotes",
+      "category_slug": "random",
+      "query_params": [],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/randomquotes",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/randomquotes",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/randomquotes"
+      },
+      "example_params": {},
+      "verification_status": "verified",
+      "last_error": null,
+      "response_example": {
+        "status": true,
+        "Creator": "Samuel-Rebix",
+        "quotes": "Make your business successful the only way possible: hard work!",
+        "by": "Mark Cuban"
+      }
+    },
+    {
+      "name": "Random-Facts",
+      "slug": "random-facts",
+      "path": "/api/facts",
+      "method": "GET",
+      "description": "Get random interesting facts",
+      "category_slug": "random",
+      "query_params": [],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/facts",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/facts",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/facts"
+      },
+      "example_params": {},
+      "verification_status": "verified",
+      "last_error": null,
+      "response_example": {
+        "status": true,
+        "creator": "Samuel-Rebix",
+        "fact": "the last Play Boy centerfold to have staples was published in 1985"
+      }
+    },
+    {
+      "name": "Random-img",
+      "slug": "random-img",
+      "path": "/api/randomimage",
+      "method": "GET",
+      "description": "Get random aesthetic images",
+      "category_slug": "random",
+      "query_params": [],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/randomimage",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/randomimage",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/randomimage"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Waifu",
+      "slug": "waifu",
+      "path": "/api/waifu",
+      "method": "GET",
+      "description": "Get random anime waifu pictures",
+      "category_slug": "images",
+      "query_params": [],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/waifu",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/waifu",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/waifu"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Cosplay",
+      "slug": "cosplay",
+      "path": "/api/cosplay",
+      "method": "GET",
+      "description": "Get random anime cosplay pictures",
+      "category_slug": "images",
+      "query_params": [],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/cosplay",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/cosplay",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/cosplay"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Couplepp",
+      "slug": "couplepp",
+      "path": "/api/couplepp",
+      "method": "GET",
+      "description": "Get matching couple profile pictures (male & female)",
+      "category_slug": "images",
+      "query_params": [],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/couplepp",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/couplepp",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/couplepp"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "BlueArchive",
+      "slug": "bluearchive",
+      "path": "/api/bluearchive",
+      "method": "GET",
+      "description": "Get random Blue Archive game images",
+      "category_slug": "images",
+      "query_params": [],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/bluearchive",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/bluearchive",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/bluearchive"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Wallpaper-Main",
+      "slug": "wallpaper-main",
+      "path": "/api/wallpaper",
+      "method": "GET",
+      "description": "Get list of available wallpaper endpoints",
+      "category_slug": "images",
+      "query_params": [],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/wallpaper",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/wallpaper",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/wallpaper"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Technology",
+      "slug": "technology",
+      "path": "/api/wallpaper/technology",
+      "method": "GET",
+      "description": "Get technology-themed wallpapers",
+      "category_slug": "images",
+      "query_params": [],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/wallpaper/technology",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/wallpaper/technology",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/wallpaper/technology"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Programming",
+      "slug": "programming",
+      "path": "/api/wallpaper/programming",
+      "method": "GET",
+      "description": "Get programming-themed wallpapers",
+      "category_slug": "images",
+      "query_params": [],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/wallpaper/programming",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/wallpaper/programming",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/wallpaper/programming"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Pussy",
+      "slug": "pussy",
+      "path": "/api/nsfw/pussy",
+      "method": "GET",
+      "description": "NSFW content - Pussy category (18+ only)",
+      "category_slug": "nsfw",
+      "query_params": [],
+      "is_nsfw": true,
+      "source_key": "rebix:GET:/api/nsfw/pussy",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/nsfw/pussy",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/nsfw/pussy"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Cuckold",
+      "slug": "cuckold",
+      "path": "/api/nsfw/cuckold",
+      "method": "GET",
+      "description": "NSFW content - Cuckold category (18+ only)",
+      "category_slug": "nsfw",
+      "query_params": [],
+      "is_nsfw": true,
+      "source_key": "rebix:GET:/api/nsfw/cuckold",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/nsfw/cuckold",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/nsfw/cuckold"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Yuri",
+      "slug": "yuri",
+      "path": "/api/nsfw/yuri",
+      "method": "GET",
+      "description": "NSFW content - Yuri category (18+ only)",
+      "category_slug": "nsfw",
+      "query_params": [],
+      "is_nsfw": true,
+      "source_key": "rebix:GET:/api/nsfw/yuri",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/nsfw/yuri",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/nsfw/yuri"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Milf",
+      "slug": "milf",
+      "path": "/api/nsfw/milf",
+      "method": "GET",
+      "description": "NSFW content - Milf category (18+ only)",
+      "category_slug": "nsfw",
+      "query_params": [],
+      "is_nsfw": true,
+      "source_key": "rebix:GET:/api/nsfw/milf",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/nsfw/milf",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/nsfw/milf"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Blowjob",
+      "slug": "blowjob",
+      "path": "/api/nsfw/blowjob",
+      "method": "GET",
+      "description": "NSFW content - Blowjob category (18+ only)",
+      "category_slug": "nsfw",
+      "query_params": [],
+      "is_nsfw": true,
+      "source_key": "rebix:GET:/api/nsfw/blowjob",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/nsfw/blowjob",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/nsfw/blowjob"
+      },
+      "example_params": {},
+      "verification_status": "unverified",
+      "last_error": null,
+      "response_example": null
+    },
+    {
+      "name": "Stats",
+      "slug": "stats",
+      "path": "/api/stats",
+      "method": "GET",
+      "description": "Get API server statistics (uptime, memory, CPU, IP, etc.)",
+      "category_slug": "system",
+      "query_params": [],
+      "is_nsfw": false,
+      "source_key": "rebix:GET:/api/stats",
+      "source_url": "https://api-rebix.zone.id/allEnds#/api/stats",
+      "request_example": {
+        "method": "GET",
+        "url": "https://api-rebix.zone.id/api/stats"
+      },
+      "example_params": {},
+      "verification_status": "verified",
+      "last_error": null,
+      "response_example": {
+        "status": "online",
+        "memory": "33.79MB / 2279MB",
+        "cpu": "Intel(R) Xeon(R) Processor @ 2.90GHz",
+        "port": 8080,
+        "uptime": "00 : 17 : 18",
+        "speed": "0ms"
+      }
+    }
+  ]
+}
