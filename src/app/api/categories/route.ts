@@ -1,6 +1,7 @@
 import { getApiContext } from "@/lib/api/context";
 import { setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -17,7 +18,8 @@ interface CategoryRow {
 export async function GET(request: Request) {
   try {
     setupGuard();
-    const { admin } = await getApiContext(request, { scopes: [] });
+    const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
 
     const [{ data: categories, error: categoryError }, { data: apis, error: apiError }] = await Promise.all([
       admin.from("categories").select("id, slug, name, description, icon, sort_order").order("sort_order"),

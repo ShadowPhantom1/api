@@ -1,6 +1,7 @@
 import { getApiContext } from "@/lib/api/context";
 import { parseJsonBody, setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 import { updateApiSchema } from "@/lib/registry/schemas";
 import { resolveCategory, resolveProvider } from "@/lib/registry/persist";
 import { encryptJson } from "@/lib/security/crypto";
@@ -33,6 +34,7 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(_request, { scopes: [] });
+    assertUserCaller(caller);
     const { id } = await context.params;
     await loadAccessibleApi(admin, id, caller);
     const { data, error } = await admin
@@ -51,6 +53,7 @@ export async function PATCH(request: Request, context: { params: Promise<{ id: s
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const { id } = await context.params;
     const existing = await loadAccessibleApi(admin, id, caller);
     const body = await parseJsonBody(request, updateApiSchema);
@@ -165,6 +168,7 @@ export async function DELETE(request: Request, context: { params: Promise<{ id: 
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const { id } = await context.params;
     await loadAccessibleApi(admin, id, caller);
     const { error } = await admin.from("apis").delete().eq("id", id);

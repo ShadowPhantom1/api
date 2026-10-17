@@ -1,6 +1,7 @@
 import { getApiContext } from "@/lib/api/context";
 import { setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -9,6 +10,7 @@ export async function DELETE(request: Request, context: { params: Promise<{ id: 
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const { id } = await context.params;
 
     const { data, error } = await admin

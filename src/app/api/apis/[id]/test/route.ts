@@ -2,6 +2,7 @@ import { z } from "zod";
 import { getApiContext } from "@/lib/api/context";
 import { parseJsonBody, setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 import { executeRegistryApi } from "@/lib/executor/registry";
 import type { ApiRecord } from "@/lib/db/types";
 
@@ -19,6 +20,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: ["execute"] });
+    assertUserCaller(caller);
     const { id } = await context.params;
     const input = await parseJsonBody(request, testBodySchema);
 

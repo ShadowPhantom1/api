@@ -16,15 +16,32 @@ function read(name: string): string | undefined {
   return value && value.trim().length > 0 ? value.trim() : undefined;
 }
 
+/** Read the first non-empty value. Lets deployments use either naming scheme. */
+function readAny(...names: string[]): string | undefined {
+  for (const name of names) {
+    const value = read(name);
+    if (value) return value;
+  }
+  return undefined;
+}
+
 export const env = {
+  // Accept both the explicit NEXT_PUBLIC_* names and the shorter names that
+  // the Vercel/Supabase integrations inject (SUPABASE_URL, SUPABASE_ANON_KEY,
+  // SUPABASE_SERVICE_ROLE_KEY / SUPABASE_SECRET_KEY).
   get supabaseUrl() {
-    return read("NEXT_PUBLIC_SUPABASE_URL");
+    return readAny("NEXT_PUBLIC_SUPABASE_URL", "SUPABASE_URL");
   },
   get supabaseAnonKey() {
-    return read("NEXT_PUBLIC_SUPABASE_ANON_KEY");
+    return readAny(
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+      "SUPABASE_ANON_KEY",
+      "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
+      "SUPABASE_PUBLISHABLE_KEY",
+    );
   },
   get supabaseServiceRoleKey() {
-    return read("SUPABASE_SERVICE_ROLE_KEY");
+    return readAny("SUPABASE_SERVICE_ROLE_KEY", "SUPABASE_SECRET_KEY");
   },
   get appEncryptionKey() {
     return read("APP_ENCRYPTION_KEY");
@@ -74,7 +91,7 @@ export function isAdminBackendConfigured(): boolean {
 export function assertAdminBackend(): void {
   if (!isAdminBackendConfigured()) {
     throw new SetupError(
-      "Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.",
+      "Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL (or SUPABASE_URL) and SUPABASE_SERVICE_ROLE_KEY.",
     );
   }
 }

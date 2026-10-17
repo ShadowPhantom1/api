@@ -1,6 +1,6 @@
 import { getApiContext } from "@/lib/api/context";
 import { parseJsonBody, setupGuard } from "@/lib/api/http";
-import { assertAdmin } from "@/lib/api/auth";
+import { assertAdmin, assertUserCaller } from "@/lib/api/auth";
 import { errorResponse } from "@/lib/executor/errors";
 import { discoveryVerifySchema } from "@/lib/registry/schemas";
 import { executeRegistryApi } from "@/lib/executor/registry";
@@ -36,6 +36,7 @@ export async function POST(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     assertAdmin(caller);
     const body = await parseJsonBody(request, discoveryVerifySchema);
 

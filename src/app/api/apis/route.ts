@@ -1,6 +1,7 @@
 import { getApiContext } from "@/lib/api/context";
 import { clampInt, parseJsonBody, requestSearchParams, setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 import { createApiSchema } from "@/lib/registry/schemas";
 import { buildRequestExample, resolveCategory, resolveProvider, uniqueApiSlug } from "@/lib/registry/persist";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -32,6 +33,7 @@ export async function GET(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const params = requestSearchParams(request);
     const scope = params.get("scope") ?? "mine";
     const page = clampInt(params.get("page"), 1, 1, 10_000);
@@ -85,6 +87,7 @@ export async function POST(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const body = await parseJsonBody(request, createApiSchema);
 
     if (body.slug) {

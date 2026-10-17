@@ -2,6 +2,7 @@ import { getApiContext } from "@/lib/api/context";
 import { parseJsonBody, setupGuard } from "@/lib/api/http";
 import { assertAdmin } from "@/lib/api/auth";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 import { discoverSchema } from "@/lib/registry/schemas";
 import { runProviderDiscovery } from "@/lib/discovery/run";
 
@@ -13,6 +14,7 @@ export async function POST(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     assertAdmin(caller);
     const body = await parseJsonBody(request, discoverSchema);
 

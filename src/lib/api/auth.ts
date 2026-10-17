@@ -154,6 +154,21 @@ export async function authenticateRequest(
   );
 }
 
+/**
+ * Management endpoints must be driven by a human-authenticated session or a
+ * Supabase access token. Scoped platform API keys are deliberately limited to
+ * the gateway so that a leaked key cannot mint keys or edit the registry.
+ */
+export function assertUserCaller(caller: Caller): void {
+  if (caller.authMethod === "platform_key") {
+    throw new GatewayError(
+      "forbidden",
+      "Platform API keys are limited to gateway endpoints (/api/gateway/execute, /v1/*). Sign in to manage the workspace.",
+      403,
+    );
+  }
+}
+
 export function assertAdmin(caller: Caller): void {
   if (!caller.isAdmin) {
     throw new GatewayError("forbidden", "Administrator access is required.", 403);

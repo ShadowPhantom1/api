@@ -2,7 +2,7 @@
   "name": "anvex",
   "version": "1.0.0",
   "private": true,
-  "description": "Anvex — database-driven API aggregator, discovery engine and OpenAI-compatible gateway",
+  "description": "Anvex \u2014 database-driven API aggregator, discovery engine and OpenAI-compatible gateway",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,7 +11,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "seed": "tsx scripts/seed.ts",
-    "seed:sql": "tsx scripts/export-seed-sql.ts"
+    "seed:sql": "tsx scripts/export-seed-sql.ts",
+    "acceptance": "node scripts/acceptance.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.1.15",

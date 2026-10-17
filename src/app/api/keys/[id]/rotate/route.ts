@@ -1,6 +1,7 @@
 import { getApiContext } from "@/lib/api/context";
 import { setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 import { generatePlatformKey } from "@/lib/security/keys";
 import { serializePlatformKey } from "@/lib/api/serialize";
 import type { PlatformKeyRecord } from "@/lib/db/types";
@@ -12,6 +13,7 @@ export async function POST(request: Request, context: { params: Promise<{ id: st
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const { id } = await context.params;
 
     const { data: existing, error } = await admin

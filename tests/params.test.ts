@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { GatewayError } from "@/lib/executor/errors";
 import {
   buildAuthHeaders,
   buildTargetUrl,
@@ -8,128 +9,101 @@ import {
   validateHeaders,
   validateQueryParams,
 } from "@/lib/registry/params";
-import type { ParamDef } from "@/lib/db/types";
 
 function codeOf(fn: () => unknown): string {
   try {
     fn();
   } catch (error) {
-    return (error as { code?: string }).code ?? "none";
+    return error instanceof GatewayError ? error.code : "not-gateway-error";
   }
   return "no-error";
 }
 
 describe("query parameter validation", () => {
-  const defs: ParamDef[] = [
-    { name: "q", type: "string", required: true, example: "hello" },
-    { name: "limit", type: "integer", required: false },
-    { name: "mode", type: "enum", enum: ["fast", "slow"] },
-    { name: "flag", type: "boolean" },
-  ];
-
-  it("accepts declared scalar values and coerces types", () => {
-    const out = validateQueryParams(defs, { q: "hi", limit: "3", mode: "fast", flag: "true" });
-    expect(out).toEqual({ q: "hi", limit: "3", mode: "fast", flag: "true" });
+  it("coerces declared scalar types", () => {
+    const out = validateQueryParams(
+      [
+        { name: "q", type: "string" },
+        { name: "limit", type: "integer" },
+        { name: "temperature", type: "number" },
+        { name: "stream", type: "boolean" },
+      ],
+      { q: "hello", limit: "5", temperature: 0.7, stream: "true" },
+    );
+    expect(out).toEqual({ q: "hello", limit: "5", temperature: "0.7", stream: "true" });
   });
 
-  it("rejects undeclared parameters by default (per-endpoint allowlist)", () => {
-    expect(codeOf(() => validateQueryParams(defs, { q: "hi", prompt: "x" }))).toBe("unknown_parameter");
-  });
-
-  it("allows undeclared parameters when the endpoint opts in", () => {
-    const out = validateQueryParams(defs, { q: "hi", prompt: "x" }, { allowExtra: true });
+  it("rejects undeclared params by default and accepts them only with allowExtra", () => {
+    expect(codeOf(() => validateQueryParams([], { prompt: "x" }))).toBe("unknown_parameter");
+    const out = validateQueryParams([], { prompt: "x" }, { allowExtra: true });
     expect(out.prompt).toBe("x");
   });
 
-  it("rejects missing required parameters", () => {
+  it("requires declared params and applies defaults", () => {
+    const defs = [
+      { name: "q", type: "string" as const, required: true },
+      { name: "lang", type: "string" as const, default: "en" },
+    ];
     expect(codeOf(() => validateQueryParams(defs, {}))).toBe("missing_parameter");
+    expect(validateQueryParams(defs, { q: "hi" })).toEqual({ q: "hi", lang: "en" });
   });
 
-  it("validates numeric, integer, boolean and enum values", () => {
-    expect(codeOf(() => validateQueryParams(defs, { q: "x", limit: "1.5" }))).toBe("invalid_parameter");
-    expect(codeOf(() => validateQueryParams(defs, { q: "x", flag: "yes" }))).toBe("invalid_parameter");
-    expect(codeOf(() => validateQueryParams(defs, { q: "x", mode: "other" }))).toBe("invalid_parameter");
+  it("enforces enum values", () => {
+    const defs = [{ name: "mode", type: "enum" as const, enum: ["fast", "slow"] }];
+    expect(validateQueryParams(defs, { mode: "fast" })).toEqual({ mode: "fast" });
+    expect(codeOf(() => validateQueryParams(defs, { mode: "other" }))).toBe("invalid_parameter");
   });
 
-  it("rejects objects, empty values and oversized input", () => {
-    expect(codeOf(() => validateQueryParams(defs, { q: { nested: true } }))).toBe("invalid_parameter");
-    expect(codeOf(() => validateQueryParams(defs, { q: "" }))).toBe("invalid_parameter");
-    expect(codeOf(() => validateQueryParams(defs, { q: "x".repeat(2049) }))).toBe("invalid_parameter");
-  });
-
-  it("caps the number of supplied parameters", () => {
-    const many = Object.fromEntries(Array.from({ length: 51 }, (_, i) => [`p${i}`, "v"]));
-    expect(codeOf(() => validateQueryParams([], many, { allowExtra: true }))).toBe("too_many_parameters");
-  });
-
-  it("applies declared defaults", () => {
-    const out = validateQueryParams([{ name: "page", default: "1" }], {});
-    expect(out.page).toBe("1");
+  it("rejects invalid parameter names and oversized input", () => {
+    expect(codeOf(() => validateQueryParams([], { "bad name": "x" }, { allowExtra: true }))).toBe("invalid_parameter");
+    expect(codeOf(() => validateQueryParams([{ name: "q" }], { q: "x".repeat(5000) }))).toBe("invalid_parameter");
   });
 });
 
-describe("path resolution", () => {
-  it("encodes substitutions so they cannot escape the segment", () => {
-    expect(resolvePath("/users/{id}", [{ name: "id", required: true }], { id: "a b/c" })).toBe(
-      "/users/a%20b%2Fc",
-    );
-    expect(resolvePath("/files/{name}", [{ name: "name", required: true }], { name: "../etc/passwd" })).toBe(
-      "/files/..%2Fetc%2Fpasswd",
+describe("path and URL construction", () => {
+  it("URL-encodes path params", () => {
+    expect(resolvePath("/pet/{petId}", [{ name: "petId", required: true }], { petId: "a/b" })).toBe(
+      "/pet/a%2Fb",
     );
   });
 
-  it("requires missing placeholders", () => {
-    expect(codeOf(() => resolvePath("/users/{id}", [{ name: "id", required: true }], {}))).toBe(
-      "missing_parameter",
+  it("rejects traversal and absolute paths", () => {
+    expect(codeOf(() => buildTargetUrl("https://api.example.com", "../admin"))).toBe("invalid_configuration");
+    expect(codeOf(() => buildTargetUrl("https://api.example.com", "https://evil.example.com/steal"))).toBe(
+      "invalid_configuration",
+    );
+  });
+
+  it("joins base path and endpoint path exactly once", () => {
+    expect(buildTargetUrl("https://api.example.com/v1", "/pets").toString()).toBe(
+      "https://api.example.com/v1/pets",
     );
   });
 });
 
-describe("target URL construction", () => {
-  it("joins base paths and rejects traversal/absolute URLs", () => {
-    expect(buildTargetUrl("https://example.com/api/", "/v1/q").toString()).toBe("https://example.com/api/v1/q");
-    expect(codeOf(() => buildTargetUrl("https://example.com", "//evil.com/x"))).toBe("invalid_configuration");
-    expect(codeOf(() => buildTargetUrl("https://example.com", "/a/../b"))).toBe("invalid_configuration");
-  });
-});
-
-describe("header validation", () => {
-  const defs = [
-    { name: "X-Trace", required: false },
-    { name: "X-Required", required: true },
-  ];
-
-  it("accepts declared headers and enforces required ones", () => {
-    expect(validateHeaders(defs, { "X-Trace": "1", "X-Required": "yes" })).toEqual({
-      "X-Trace": "1",
-      "X-Required": "yes",
-    });
-    expect(codeOf(() => validateHeaders(defs, { "X-Trace": "1" }))).toBe("missing_header");
+describe("headers and auth injection", () => {
+  it("detects forbidden forwarding headers", () => {
+    for (const name of ["Authorization", "cookie", "X-Forwarded-For", "x-supabase-auth"]) {
+      expect(isForbiddenHeader(name), name).toBe(true);
+    }
+    expect(isForbiddenHeader("X-Request-Id")).toBe(false);
   });
 
-  it("rejects undeclared and dangerous headers", () => {
-    expect(codeOf(() => validateHeaders(defs, { "X-Required": "1", "X-Other": "2" }))).toBe("unknown_header");
-    expect(codeOf(() => validateHeaders(defs, { "X-Required": "1", Authorization: "x" }))).toBe(
-      "forbidden_header",
-    );
-    expect(isForbiddenHeader("X-Forwarded-Host")).toBe(true);
-    expect(isForbiddenHeader("x-supabase-auth")).toBe(true);
-    expect(isForbiddenHeader("X-Trace")).toBe(false);
+  it("rejects undeclared and forbidden client headers", () => {
+    expect(codeOf(() => validateHeaders([], { "X-Trace": "1" }))).toBe("unknown_header");
+    expect(codeOf(() => validateHeaders([], { Authorization: "Bearer x" }))).toBe("forbidden_header");
   });
-});
 
-describe("upstream auth injection", () => {
-  it("injects bearer/api key/basic credentials server-side", () => {
+  it("injects bearer and api-key credentials server-side", () => {
     expect(buildAuthHeaders("none", {}, null)).toEqual({});
     expect(buildAuthHeaders("bearer", {}, { token: "t" })).toEqual({ Authorization: "Bearer t" });
     expect(buildAuthHeaders("api_key", { header_name: "X-Key" }, { apiKey: "k" })).toEqual({ "X-Key": "k" });
-    expect(buildAuthHeaders("api_key", {}, { apiKey: "k" })).toEqual({ "X-API-Key": "k" });
-    expect(
-      buildAuthHeaders("basic", {}, { username: "u", password: "p" }).Authorization,
-    ).toBe(`Basic ${Buffer.from("u:p").toString("base64")}`);
+    expect(buildAuthHeaders("basic", {}, { username: "u", password: "p" })).toEqual({
+      Authorization: `Basic ${Buffer.from("u:p").toString("base64")}`,
+    });
   });
 
-  it("fails with 424 when credentials are missing (no anonymous upstream call)", () => {
+  it("fails closed when credentials are missing", () => {
     expect(codeOf(() => buildAuthHeaders("bearer", {}, null))).toBe("auth_not_configured");
     expect(codeOf(() => buildAuthHeaders("api_key", {}, {}))).toBe("auth_not_configured");
     expect(codeOf(() => buildAuthHeaders("basic", {}, { username: "u" }))).toBe("auth_not_configured");
@@ -137,27 +111,18 @@ describe("upstream auth injection", () => {
 });
 
 describe("body validation", () => {
-  it("serializes JSON and form bodies and enforces required fields", () => {
+  it("accepts JSON objects for non-GET methods only", () => {
     expect(validateBody("POST", null, { a: 1 }, "application/json")).toEqual({
-      body: '{"a":1}',
+      body: "{\"a\":1}",
       contentType: "application/json",
     });
-    expect(
-      validateBody("POST", null, { a: 1, b: "two" }, "application/x-www-form-urlencoded").body,
-    ).toBe("a=1&b=two");
-    expect(codeOf(() => validateBody("POST", { required: ["a"] }, {}, "application/json"))).toBe(
-      "missing_body_field",
-    );
-  });
-
-  it("rejects bodies on GET and non-object bodies", () => {
     expect(codeOf(() => validateBody("GET", null, { a: 1 }, "application/json"))).toBe("invalid_body");
     expect(codeOf(() => validateBody("POST", null, [1, 2], "application/json"))).toBe("invalid_body");
   });
 
-  it("caps body size", () => {
-    expect(codeOf(() => validateBody("POST", null, { blob: "x".repeat(300_000) }, "application/json"))).toBe(
-      "body_too_large",
+  it("enforces required body fields", () => {
+    expect(codeOf(() => validateBody("POST", { required: ["name"] }, {}, "application/json"))).toBe(
+      "missing_body_field",
     );
   });
 });

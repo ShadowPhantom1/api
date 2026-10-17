@@ -2,6 +2,7 @@ import { z } from "zod";
 import { getApiContext } from "@/lib/api/context";
 import { parseJsonBody, setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -14,6 +15,7 @@ export async function PATCH(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const body = await parseJsonBody(request, profileSchema);
     const { error } = await admin
       .from("profiles")

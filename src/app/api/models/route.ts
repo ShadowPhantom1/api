@@ -1,6 +1,7 @@
 import { getApiContext } from "@/lib/api/context";
 import { parseJsonBody, setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 import { createAiModelSchema } from "@/lib/registry/schemas";
 import { normalizeCapabilities, defaultAuthHeaderName } from "@/lib/ai/models";
 import { loadLinkableApi, rebixQueryParam } from "@/lib/ai/link";
@@ -16,6 +17,7 @@ export async function GET(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const { data, error } = await admin
       .from("ai_models")
       .select("*")
@@ -34,6 +36,7 @@ export async function POST(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const body = await parseJsonBody(request, createAiModelSchema);
 
     const { data: clash } = await admin.from("ai_models").select("id").eq("slug", body.slug).maybeSingle();

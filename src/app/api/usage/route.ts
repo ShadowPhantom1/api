@@ -1,6 +1,7 @@
 import { getApiContext } from "@/lib/api/context";
 import { clampInt, requestSearchParams, setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 import type { RequestKind } from "@/lib/db/types";
 
 export const runtime = "nodejs";
@@ -28,6 +29,7 @@ export async function GET(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const params = requestSearchParams(request);
     const days = clampInt(params.get("days"), 30, 1, 90);
     const scope = params.get("scope") === "all" ? "all" : "mine";

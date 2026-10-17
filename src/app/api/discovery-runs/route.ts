@@ -1,6 +1,7 @@
 import { getApiContext } from "@/lib/api/context";
 import { clampInt, requestSearchParams, setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -9,6 +10,7 @@ export async function GET(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     if (!caller.isAdmin) {
       throw new GatewayError("forbidden", "Administrator access is required to view discovery runs.", 403);
     }

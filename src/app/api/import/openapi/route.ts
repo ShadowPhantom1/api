@@ -1,6 +1,7 @@
 import { getApiContext } from "@/lib/api/context";
 import { parseJsonBody, setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 import { importOpenApiSchema } from "@/lib/registry/schemas";
 import { parseOpenApiDocument } from "@/lib/discovery/openapi";
 import { resolveProvider } from "@/lib/registry/persist";
@@ -15,6 +16,7 @@ export async function POST(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const body = await parseJsonBody(request, importOpenApiSchema);
 
     let document: string | Record<string, unknown>;

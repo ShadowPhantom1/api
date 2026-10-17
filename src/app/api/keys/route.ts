@@ -1,6 +1,7 @@
 import { getApiContext } from "@/lib/api/context";
 import { parseJsonBody, setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 import { createKeySchema } from "@/lib/registry/schemas";
 import { generatePlatformKey } from "@/lib/security/keys";
 import { serializePlatformKey } from "@/lib/api/serialize";
@@ -13,6 +14,7 @@ export async function GET(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const { data, error } = await admin
       .from("platform_api_keys")
       .select("*")
@@ -31,6 +33,7 @@ export async function POST(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const body = await parseJsonBody(request, createKeySchema);
     const generated = generatePlatformKey();
     const expiresAt = body.expiresInDays

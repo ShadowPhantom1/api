@@ -1,6 +1,7 @@
 import { getApiContext } from "@/lib/api/context";
 import { parseJsonBody, setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 import { probeSchema } from "@/lib/registry/schemas";
 import { isForbiddenHeader } from "@/lib/registry/params";
 import { consumeRateLimit } from "@/lib/security/rate-limit";
@@ -20,6 +21,7 @@ export async function POST(request: Request) {
   try {
     setupGuard();
     const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
     const limit = await consumeRateLimit(admin, `probe:${caller.userId}`, 20, 60);
     if (!limit.allowed) {
       throw new GatewayError("rate_limited", "Probe limit reached (20 requests / minute).", 429);

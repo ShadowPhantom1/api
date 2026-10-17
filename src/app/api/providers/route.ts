@@ -1,6 +1,7 @@
 import { getApiContext } from "@/lib/api/context";
 import { setupGuard } from "@/lib/api/http";
 import { errorResponse, GatewayError } from "@/lib/executor/errors";
+import { assertUserCaller } from "@/lib/api/auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -8,7 +9,8 @@ export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   try {
     setupGuard();
-    const { admin } = await getApiContext(request, { scopes: [] });
+    const { admin, caller } = await getApiContext(request, { scopes: [] });
+    assertUserCaller(caller);
 
     const [{ data: providers, error: providerError }, { data: apis, error: apiError }] = await Promise.all([
       admin
